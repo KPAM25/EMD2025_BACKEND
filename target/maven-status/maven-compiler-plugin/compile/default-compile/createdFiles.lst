@@ -1,1 +1,3 @@
 com\alomora\emd2025\EMD2025.class
+unidadMedica\entities\unidadMedicaTBL.class
+unidadMedica\repositories\unidadMedicaRepository.class
