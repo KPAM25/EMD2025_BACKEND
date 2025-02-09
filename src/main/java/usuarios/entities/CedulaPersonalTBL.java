@@ -25,7 +25,7 @@ import java.time.LocalTime;
  */
 
 @Entity
-@Table(name = "cedula_personal_tbl")
+@Table(name = "cedula_personal_tbl", schema = "adminEmd")
 public class CedulaPersonalTBL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

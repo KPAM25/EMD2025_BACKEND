@@ -23,7 +23,7 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-@Table(name = "horarios_tbl")
+@Table(name = "horarios_atencion_tbl", schema = "adminEmd")
 public class HorariosTBL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

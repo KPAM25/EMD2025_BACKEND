@@ -23,7 +23,7 @@ import java.time.LocalTime;
  */
 
 @Entity
-@Table(name = "pacientes_tbl")
+@Table(name = "pacientes_tbl", schema = "emd")
 public class PacientesTBL {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +33,6 @@ public class PacientesTBL {
     @Basic(optional = false)
     @Column(name = "expediente_fisico_paciente")
     private String expedienteFisicoPaciente;
-    @Basic(optional = false)
-    @Column(name = "gratuida")
-    private Integer gratuida;
     @Basic(optional = false)
     @Column(name = "activo_paciente")
     private Short activoPaciente;
@@ -57,10 +54,9 @@ public class PacientesTBL {
     public PacientesTBL() {
     }
 
-    public PacientesTBL(Integer idPaciente, String expedienteFisicoPaciente, Integer gratuida, Short activoPaciente, LocalDate fechaRegistro, LocalTime horaResgistro, Integer fkUsuarioRegistro, PersonasTBL fkPersona) {
+    public PacientesTBL(Integer idPaciente, String expedienteFisicoPaciente, Short activoPaciente, LocalDate fechaRegistro, LocalTime horaResgistro, Integer fkUsuarioRegistro, PersonasTBL fkPersona) {
         this.idPaciente = idPaciente;
         this.expedienteFisicoPaciente = expedienteFisicoPaciente;
-        this.gratuida = gratuida;
         this.activoPaciente = activoPaciente;
         this.fechaRegistro = fechaRegistro;
         this.horaResgistro = horaResgistro;
@@ -82,14 +78,6 @@ public class PacientesTBL {
 
     public void setExpedienteFisicoPaciente(String expedienteFisicoPaciente) {
         this.expedienteFisicoPaciente = expedienteFisicoPaciente;
-    }
-
-    public Integer getGratuida() {
-        return gratuida;
-    }
-
-    public void setGratuida(Integer gratuida) {
-        this.gratuida = gratuida;
     }
 
     public Short getActivoPaciente() {

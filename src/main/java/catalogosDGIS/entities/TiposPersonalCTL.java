@@ -18,7 +18,7 @@ import javax.persistence.Id;
  */
 
 @Entity
-@Table(name = "tipos_personal_ctl")
+@Table(name = "tipo_personal_ctl", schema = "catalogosDgis")
 public class TiposPersonalCTL {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,24 +26,21 @@ public class TiposPersonalCTL {
     @Column(name = "id_tipo_personal")
     private Integer idTipoPersonal;
     @Basic(optional = false)
-    @Column(name = "valorsinba_tipo_personal")
+    @Column(name = "valor_key")
     private Integer valorsinbaTipoPersonal;   
     @Column(name = "nombre_tipo_personal")
     private String nombreTipoPersonal; 
     @Column(name = "activo_tipo_personal")
     private Integer activoTipoPersonal;
-    @Column(name = "valor_dgis")
-    private Integer valorDgis;
 
     public TiposPersonalCTL() {
     }
 
-    public TiposPersonalCTL(Integer idTipoPersonal, Integer valorsinbaTipoPersonal, String nombreTipoPersonal, Integer activoTipoPersonal, Integer valorDgis) {
+    public TiposPersonalCTL(Integer idTipoPersonal, Integer valorsinbaTipoPersonal, String nombreTipoPersonal, Integer activoTipoPersonal) {
         this.idTipoPersonal = idTipoPersonal;
         this.valorsinbaTipoPersonal = valorsinbaTipoPersonal;
         this.nombreTipoPersonal = nombreTipoPersonal;
         this.activoTipoPersonal = activoTipoPersonal;
-        this.valorDgis = valorDgis;
     }
 
     public Integer getIdTipoPersonal() {
@@ -78,13 +75,5 @@ public class TiposPersonalCTL {
         this.activoTipoPersonal = activoTipoPersonal;
     }
 
-    public Integer getValorDgis() {
-        return valorDgis;
-    }
-
-    public void setValorDgis(Integer valorDgis) {
-        this.valorDgis = valorDgis;
-    }
-    
     
 }

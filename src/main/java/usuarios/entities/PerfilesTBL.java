@@ -25,12 +25,12 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-@Table(name = "perfiles_tbl")
+@Table(name = "perfiles_tbl", schema = "adminEmd")
 public class PerfilesTBL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_perfil_personal")
+    @Column(name = "id_perfil")
     private Integer idPerfilPersonal;
     @Basic(optional = false)
     @JoinColumn(name = "fk_tipo_personal", referencedColumnName = "id_tipo_personal")

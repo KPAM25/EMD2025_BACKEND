@@ -18,7 +18,7 @@ import javax.persistence.Id;
  */
 
 @Entity
-@Table(name = "roles_ctl")
+@Table(name = "roles_ctl", schema = "catalogos")
 public class RolesCTL {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

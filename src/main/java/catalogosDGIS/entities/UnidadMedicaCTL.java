@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "unidad_medica_ctl")
+@Table(name = "unidad_medica_ctl", schema = "catalogosDgis")
 public class UnidadMedicaCTL {
 
     @Id

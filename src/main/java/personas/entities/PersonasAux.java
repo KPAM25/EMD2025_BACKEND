@@ -22,7 +22,7 @@ import java.time.LocalTime;
  * @author kpam2
  */
 @Entity
-@Table(name = "personas_aux")
+@Table(name = "personas_aux", schema = "emd")
 public class PersonasAux {
     
     @Id
@@ -48,9 +48,6 @@ public class PersonasAux {
     @Column(name = "es_nacio_hospital")
     private Integer esNacioHospital;
     @Basic(optional = false)
-    @Column(name = "es_escolaridad_completa")
-    private boolean esEscolaridadCompleta;
-    @Basic(optional = false)
     @Column(name = "fk_idioma")
     private Integer fkIdioma;
     @Basic(optional = false)
@@ -60,10 +57,7 @@ public class PersonasAux {
     private Integer fkEscolaridad;
     @Column(name = "fk_estado_conyugal")
     private Integer fkEstadoConyugal;
-    @Column(name = "fk_lengua")
-    private Integer fkLengua;
-    @Basic(optional = false)
-    @Column(name = "activo_persona")
+    @Column(name = "activo_persona_aux")
     private Integer activoPersona;
     @Basic(optional = false)
     @Column(name = "fecha_registro")
@@ -79,13 +73,11 @@ public class PersonasAux {
     @JoinColumn(name = "fk_persona", referencedColumnName = "id_persona")
     @OneToOne(optional = false)
     private PersonasTBL fkPersona;
-    @Column(name = "habla_lengua_indigena")
-    private Integer hablaLenguaIndigena;
 
     public PersonasAux() {
     }
 
-    public PersonasAux(Integer idPersonaAux, Integer esMigrantePaciente, Short esAfromexicanoPaciente, Short esIndigenaPaciente, Boolean esDesconocido, Integer sabeLeer, Integer esNacioHospital, boolean esEscolaridadCompleta, Integer fkIdioma, Integer fkTiposangre, Integer fkEscolaridad, Integer fkEstadoConyugal, Integer fkLengua, Integer activoPersona, LocalDate fechaRegistro, LocalTime horaResgistro, Integer fkUsuarioRegistro, PersonasTBL fkPersona, Integer hablaLenguaIndigena) {
+    public PersonasAux(Integer idPersonaAux, Integer esMigrantePaciente, Short esAfromexicanoPaciente, Short esIndigenaPaciente, Boolean esDesconocido, Integer sabeLeer, Integer esNacioHospital, Integer fkIdioma, Integer fkTiposangre, Integer fkEscolaridad, Integer fkEstadoConyugal, Integer activoPersona, LocalDate fechaRegistro, LocalTime horaResgistro, Integer fkUsuarioRegistro, PersonasTBL fkPersona) {
         this.idPersonaAux = idPersonaAux;
         this.esMigrantePaciente = esMigrantePaciente;
         this.esAfromexicanoPaciente = esAfromexicanoPaciente;
@@ -93,18 +85,15 @@ public class PersonasAux {
         this.esDesconocido = esDesconocido;
         this.sabeLeer = sabeLeer;
         this.esNacioHospital = esNacioHospital;
-        this.esEscolaridadCompleta = esEscolaridadCompleta;
         this.fkIdioma = fkIdioma;
         this.fkTiposangre = fkTiposangre;
         this.fkEscolaridad = fkEscolaridad;
         this.fkEstadoConyugal = fkEstadoConyugal;
-        this.fkLengua = fkLengua;
         this.activoPersona = activoPersona;
         this.fechaRegistro = fechaRegistro;
         this.horaResgistro = horaResgistro;
         this.fkUsuarioRegistro = fkUsuarioRegistro;
         this.fkPersona = fkPersona;
-        this.hablaLenguaIndigena = hablaLenguaIndigena;
     }
 
     public Integer getIdPersonaAux() {
@@ -163,14 +152,6 @@ public class PersonasAux {
         this.esNacioHospital = esNacioHospital;
     }
 
-    public boolean isEsEscolaridadCompleta() {
-        return esEscolaridadCompleta;
-    }
-
-    public void setEsEscolaridadCompleta(boolean esEscolaridadCompleta) {
-        this.esEscolaridadCompleta = esEscolaridadCompleta;
-    }
-
     public Integer getFkIdioma() {
         return fkIdioma;
     }
@@ -201,14 +182,6 @@ public class PersonasAux {
 
     public void setFkEstadoConyugal(Integer fkEstadoConyugal) {
         this.fkEstadoConyugal = fkEstadoConyugal;
-    }
-
-    public Integer getFkLengua() {
-        return fkLengua;
-    }
-
-    public void setFkLengua(Integer fkLengua) {
-        this.fkLengua = fkLengua;
     }
 
     public Integer getActivoPersona() {
@@ -249,15 +222,6 @@ public class PersonasAux {
 
     public void setFkPersona(PersonasTBL fkPersona) {
         this.fkPersona = fkPersona;
-    }
-
-    public Integer getHablaLenguaIndigena() {
-        return hablaLenguaIndigena;
-    }
-
-    public void setHablaLenguaIndigena(Integer hablaLenguaIndigena) {
-        this.hablaLenguaIndigena = hablaLenguaIndigena;
-    }
-    
+    }    
     
 }
