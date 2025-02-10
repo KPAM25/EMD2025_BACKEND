@@ -22,20 +22,20 @@ import lombok.NoArgsConstructor;
  */
 
 @Entity
-@Table(name = "roles_ctl", schema = "catalogos")
+@Table(name = "tipos_sangre_ctl", schema = "catalogos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RolesCTL implements Serializable {
+public class TiposSangreCTL implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_rol")
-    private Long idRol;
+    @Column(name = "id_tiposangre")
+    private Long idTipoSangre;
     @Basic(optional = false)
-    @Column(name = "nombre_rol")
-    private String nombreRol;   
-    @Column(name = "activo_rol")
-    private Integer activoRol;
+    @Column(name = "nombre_tiposangre")
+    private String nombreTipoSangre;   
+    @Column(name = "activo_tiposangre")
+    private Integer activoTipoSangre;
 }
