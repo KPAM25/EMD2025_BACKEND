@@ -21,12 +21,12 @@ import java.time.LocalTime;
  */
 
 @Entity
-@Table(name = "personal_salud_tbl", schema = "adminEmd")
+@Table(name = "personal_salud_tbl")
 public class PersonalSaludTBL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_personal")
+    @Column(name = "id_personal_salud")
     private Integer idPersonalSalud;
     @Column(name = "fk_persona")
     private Integer fkPersona;

@@ -21,7 +21,7 @@ import java.time.LocalTime;
  */
 
 @Entity
-@Table(name = "usuarios_tbl", schema = "adminEmd")
+@Table(name = "usuarios_tbl")
 public class UsuariosTBL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +51,8 @@ public class UsuariosTBL {
     @Column(name = "fecha_contra")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaContra;
+    @Column(name = "cuenta_no_expirada")
+    private Boolean cuentaNoExpirada;
     @Column(name = "fk_usuario_registro")
     private Integer fkUsuarioRegistro;
     @Column(name = "fecha_registro")
@@ -62,7 +64,7 @@ public class UsuariosTBL {
     public UsuariosTBL() {
     }
 
-    public UsuariosTBL(Integer idUsuario, Short activoUsuario, String nombreUsuario, String contraseniaUsuario, int fkPersonalSalud, Boolean esInicial, String temporalContra, Boolean cuentaNoBloqueada, Integer intentos, LocalDate fechaContra, Integer fkUsuarioRegistro) {
+    public UsuariosTBL(Integer idUsuario, Short activoUsuario, String nombreUsuario, String contraseniaUsuario, int fkPersonalSalud, Boolean esInicial, String temporalContra, Boolean cuentaNoBloqueada, Integer intentos, LocalDate fechaContra, Boolean cuentaNoExpirada, Integer fkUsuarioRegistro) {
         this.idUsuario = idUsuario;
         this.activoUsuario = activoUsuario;
         this.nombreUsuario = nombreUsuario;
@@ -73,6 +75,7 @@ public class UsuariosTBL {
         this.cuentaNoBloqueada = cuentaNoBloqueada;
         this.intentos = intentos;
         this.fechaContra = fechaContra;
+        this.cuentaNoExpirada = cuentaNoExpirada;
         this.fkUsuarioRegistro = fkUsuarioRegistro;
     }
 
@@ -155,7 +158,15 @@ public class UsuariosTBL {
     public void setFechaContra(LocalDate fechaContra) {
         this.fechaContra = fechaContra;
     }
-    
+
+    public Boolean getCuentaNoExpirada() {
+        return cuentaNoExpirada;
+    }
+
+    public void setCuentaNoExpirada(Boolean cuentaNoExpirada) {
+        this.cuentaNoExpirada = cuentaNoExpirada;
+    }
+
     public Integer getFkUsuarioRegistro() {
         return fkUsuarioRegistro;
     }

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "personas_tbl", schema = "emd")
+@Table(name = "personas_tbl")
 public class PersonasTBL {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,13 +34,13 @@ public class PersonasTBL {
     @Basic(optional = false)
     @Column(name = "fecha_nacimiento_persona")
     private String fechaNacimientoPersona;
-    @Column(name = "fk_unidad")
+    @Column(name = "fk_establecimiento")
     private Integer fkEstablecimiento;
     @Column(name = "fk_pais_nac")
     private Integer fkPaisNac;
     @Column(name = "fk_entidad_nac")
     private Integer fkEntidadNac;
-    @Column(name = "fk_sexo_curp")
+    @Column(name = "fk_sexo")
     private Integer fkSexo;
     @Basic(optional = false)
     @Column(name = "fk_genero")
@@ -62,13 +62,13 @@ public class PersonasTBL {
     @Column(name = "fk_usuario_registro")
     private Integer fkUsuarioRegistro;    
     @Basic(optional = true)
-    @Column(name = "curp_valida")
-    private Boolean curpValida;    
+    @Column(name = "unknownbirthdate")
+    private Boolean unknownbirthdate;    
 
     public PersonasTBL() {
     }
 
-    public PersonasTBL(Integer idPersona, String curpPersona, String nombresPersona, String primerApellidoPersona, String segundoApellidoPersona, String fechaNacimientoPersona, Integer fkEstablecimiento, Integer fkPaisNac, Integer fkEntidadNac, Integer fkSexo, Short fkGenero, Integer activoPersona, Integer fkUsuarioRegistro, Boolean curpValida) {
+    public PersonasTBL(Integer idPersona, String curpPersona, String nombresPersona, String primerApellidoPersona, String segundoApellidoPersona, String fechaNacimientoPersona, Integer fkEstablecimiento, Integer fkPaisNac, Integer fkEntidadNac, Integer fkSexo, Short fkGenero, Integer activoPersona, Integer fkUsuarioRegistro, Boolean unknownbirthdate) {
         this.idPersona = idPersona;
         this.curpPersona = curpPersona;
         this.nombresPersona = nombresPersona;
@@ -82,7 +82,7 @@ public class PersonasTBL {
         this.fkGenero = fkGenero;
         this.activoPersona = activoPersona;
         this.fkUsuarioRegistro = fkUsuarioRegistro;
-        this.curpValida = curpValida;
+        this.unknownbirthdate = unknownbirthdate;
     }
 
     public Integer getIdPersona() {
@@ -205,14 +205,13 @@ public class PersonasTBL {
         this.fkUsuarioRegistro = fkUsuarioRegistro;
     }
 
-    public Boolean getCurpValida() {
-        return curpValida;
+    public Boolean getUnknownbirthdate() {
+        return unknownbirthdate;
     }
 
-    public void setCurpValida(Boolean curpValida) {
-        this.curpValida = curpValida;
+    public void setUnknownbirthdate(Boolean unknownbirthdate) {
+        this.unknownbirthdate = unknownbirthdate;
     }
-
-   
+    
     
 }

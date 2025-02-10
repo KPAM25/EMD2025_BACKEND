@@ -18,7 +18,7 @@ import javax.persistence.Id;
  */
 
 @Entity
-@Table(name = "especialidad_ctl", schema = "catalogosDgis")
+@Table(name = "especialidades_ctl")
 public class EspecialidadesCTL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,24 +26,21 @@ public class EspecialidadesCTL {
     @Column(name = "id_especialidad")
     private Integer idEspecialidad;
     @Basic(optional = false)
-    @Column(name = "nombre_especialidad")
+    @Column(name = "especialidad")
     private String especialidad;   
     @Column(name = "activo_especialidad")
     private Integer activoEspecialidad;
-    @Column(name = "valor_esvalor_keypecialidad")
+    @Column(name = "valor_especialidad")
     private Integer valorEspecialidad;
-    @Column(name = "activo_especialidad_unidad")
-    private Integer activoUnidad;
 
     public EspecialidadesCTL() {
     }
 
-    public EspecialidadesCTL(Integer idEspecialidad, String especialidad, Integer activoEspecialidad, Integer valorEspecialidad, Integer activoUnidad) {
+    public EspecialidadesCTL(Integer idEspecialidad, String especialidad, Integer activoEspecialidad, Integer valorEspecialidad) {
         this.idEspecialidad = idEspecialidad;
         this.especialidad = especialidad;
         this.activoEspecialidad = activoEspecialidad;
         this.valorEspecialidad = valorEspecialidad;
-        this.activoUnidad = activoUnidad;
     }
 
     public Integer getIdEspecialidad() {
@@ -76,14 +73,6 @@ public class EspecialidadesCTL {
 
     public void setValorEspecialidad(Integer valorEspecialidad) {
         this.valorEspecialidad = valorEspecialidad;
-    }
-
-    public Integer getActivoUnidad() {
-        return activoUnidad;
-    }
-
-    public void setActivoUnidad(Integer activoUnidad) {
-        this.activoUnidad = activoUnidad;
     }
     
     
