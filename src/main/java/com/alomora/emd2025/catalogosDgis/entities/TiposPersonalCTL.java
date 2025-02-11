@@ -22,23 +22,22 @@ import lombok.NoArgsConstructor;
  */
 
 @Entity
-@Table(name = "especialidad_ctl", schema = "catalogosdgis")
+@Table(name = "tipo_personal_ctl", schema = "catalogosdgis")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EspecialidadesCTL implements Serializable{
+public class TiposPersonalCTL implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_especialidad")
-    private Long idEspecialidad;
+    @Column(name = "id_tipo_personal")
+    private Long idTipoPersonal;
     @Basic(optional = false)
-    @Column(name = "nombre_especialidad")
-    private String especialidad;   
-    @Column(name = "activo_especialidad")
-    private Integer activoEspecialidad;
-    @Column(name = "valor_key")
-    private Integer valorEspecialidad;
-    @Column(name = "activo_especialidad_unidad")
-    private Integer activoUnidad;
+    @Column(name = "catalog_key")
+    private Integer valorsinbaTipoPersonal;   
+    @Column(name = "nombre_tipo_personal")
+    private String nombreTipoPersonal; 
+    @Column(name = "activo_tipo_personal")
+    private Integer activoTipoPersonal;
 }
