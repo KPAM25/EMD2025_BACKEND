@@ -22,5 +22,5 @@ Antes de ejecutar este proyecto, asegúrate de tener instalado lo siguiente:
  Compila el proyecto utilizando Maven: mvn clean install
  Ejecuta la aplicación con el siguiente comando: mvn spring-boot:run
 
- La aplicación estará disponible en:
- http://localhost:8080
+ La aplicación podra verse en:
+ http://localhost:8080/swagger-ui/index.html
