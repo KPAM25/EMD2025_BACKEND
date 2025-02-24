@@ -30,3 +30,5 @@ Antes de ejecutar este proyecto, asegúrate de tener instalado lo siguiente:
 
  La documentacion podra verse en:
  http://localhost:8080/swagger-ui/index.html
+
+ Actualizar base:24-02-2025
