@@ -9,6 +9,7 @@ Tecnologías utilizadas
  Base de datos: PostgreSQL
  IDE: NetBeans 21
 
+Rama a usar: main
 
 Requisitos previos
 Antes de ejecutar este proyecto, asegúrate de tener instalado lo siguiente:
@@ -24,6 +25,8 @@ Antes de ejecutar este proyecto, asegúrate de tener instalado lo siguiente:
 
  la base de datos esta en la carpeta src\main\resources\baseDatos ademas ahi mismo esta un documento donde se indica como se instala la base de datos
  
-
  La aplicación podra verse en:
+  http://localhost:8080
+
+ La documentacion podra verse en:
  http://localhost:8080/swagger-ui/index.html
