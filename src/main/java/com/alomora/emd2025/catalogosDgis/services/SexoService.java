@@ -26,7 +26,7 @@ public class SexoService {
         return (List<SexoCTL>)this.sexoRepository.getAllByEstatus(estatus);
     }
     
-    public List<SexoCTL> getByKey(String key){
+    public List<SexoCTL> getByKey(Integer key){
         return (List<SexoCTL>)this.sexoRepository.getByKey(key);
     }
 }

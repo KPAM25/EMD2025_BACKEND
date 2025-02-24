@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bienvenido</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f0f2f5;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                height: auto;
+                text-align: center;
+            }
+            .container {
+                width: 95%;
+                max-width: 1200px;
+                padding: 40px;
+                background: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+            }
+            h1 {
+                color: #007BFF;
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 1.2em;
+                line-height: 1.6;
+                color: #555;
+            }
+            .highlight {
+                color: #28a745;
+                font-weight: bold;
+            }
+            footer {
+                margin-top: 30px;
+                font-size: 1em;
+                color: #777;
+            }
+            .form-group {
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .form-group div {
+                width: 50%;
+            }
+
+            input, select {
+                width: 100%;
+                padding: 14px;
+                font-size: 1.1em;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            label {
+                font-weight: bold;
+                display: block;
+                width: 100%;
+            }
+            input, select, button {
+                padding: 12px;
+                margin-top: 5px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 1em;
+            }
+            input[type="text"], select {
+                width: 75%;
+            }
+            button {
+                background-color: #007BFF;
+                color: white;
+                cursor: pointer;
+                font-size: 1.2em;
+                width: 100%;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            .full-width {
+                width: 100%;
+            }
+            @media (max-width: 768px) {
+                .form-group input, .form-group select {
+                    width: 100%;
+                }
+                button {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>¡Bienvenido al Expediente Médico Digital (EMD)!</h1>
+            <p>Esta es una página estática servida desde el servidor.</p>
+            <p>El <span class="highlight">backend</span> está corriendo exitosamente.</p>    
+            <p>En esta entrega se realizaron los GET y POST.</p>
+
+            <h2>Registro de Persona</h2>
+            <form id="personaForm">
+                <div class="form-group">
+                    <div>
+                        <label for="nombresPersona">Nombre:</label>
+                        <input type="text" id="nombresPersona" required>
+                    </div>
+
+                    <div>
+                        <label for="primerApellidoPersona">Primer Apellido:</label>
+                        <input type="text" id="primerApellidoPersona" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label for="segundoApellidoPersona">Segundo Apellido:</label>
+                        <input type="text" id="segundoApellidoPersona">
+                    </div>
+
+                    <div>
+                        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" id="fechaNacimiento" required>
+                    </div>
+                   
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label for="fkPais">País:</label>
+                        <select id="fkPais" required>
+                            <option value="">Cargando...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="fkEntidad">Entidad:</label>
+                        <select id="fkEntidad" disabled>
+                            <option value="">Seleccione un país primero</option>
+                        </select>
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label for="fkSexo">Sexo:</label>
+                        <select id="fkSexo" required>
+                            <option value="">Cargando...</option>
+                        </select>
+                    </div>
+
+                    <div class="full-width">
+                        <label for="curpPersona">CURP:</label>
+                        <input type="text" id="curpPersona" required>
+                    </div>
+                </div>
+
+                <button type="submit">Guardar</button>
+            </form>
+            
+            <h2>Lista de Personas Registradas</h2>
+<table border="1" id="tablaPersonas">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>CURP</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Sexo</th>
+            <th>País</th>
+            <th>Entidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="9">Cargando datos...</td></tr>
+    </tbody>
+</table>
+
+            <footer>&copy; 2025 Expediente Médico Digital</footer>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                cargarPersonas();
+                cargarSexo();
+                cargarPais();
+                document.getElementById("fkPais").addEventListener("change", cargarEntidad);
+            });
+            
+            function cargarPersonas() {
+        fetch("http://localhost:8080/persona/getAllEstatus/1")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al obtener personas");
+                }
+                return response.json();
+            })
+            .then(data => {
+                let tbody = document.querySelector("#tablaPersonas tbody");
+                tbody.innerHTML = ""; // Limpiar tabla antes de actualizar
+                
+                if (data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="9">No hay personas registradas.</td></tr>`;
+                    return;
+                }
+
+                data.forEach(persona => {
+                    let row = `<tr>
+                        <td>${persona.idPersona}</td>
+                        <td>${persona.nombresPersona}</td>
+                        <td>${persona.primerApellidoPersona}</td>
+                        <td>${persona.segundoApellidoPersona || ''}</td>
+                        <td>${persona.curpPersona}</td>
+                        <td>${persona.fechaNacimientoPersona}</td>
+                        <td>${persona.fkSexoCurp.descripcion}</td>
+                        <td>${persona.fkPaisNac.descripcion}</td>
+                        <td>${persona.fkEntidadNac.entidadFederativa}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.querySelector("#tablaPersonas tbody").innerHTML = `<tr><td colspan="9">Error al cargar datos</td></tr>`;
+            });
+    }
+
+            function cargarSexo() {
+                fetch("http://localhost:8080/sexo/getAllEstatus/1")
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Error al obtener los sexos");
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            let selectsexo = document.getElementById("fkSexo");
+                            selectsexo.innerHTML = '<option value="">Seleccione...</option>';
+                            data.forEach(sexo => {
+                                let option = document.createElement("option");
+                                option.value = sexo.catalogKey;
+                                option.textContent = sexo.descripcion;
+                                selectsexo.appendChild(option);
+                            });
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            document.getElementById("fkSexo").innerHTML = '<option value="">Error al cargar</option>';
+                        });
+            }
+
+            function cargarPais() {
+                fetch("http://localhost:8080/pais/getAllEstatus/1")
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Error al obtener los países");
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            let selectPais = document.getElementById("fkPais");
+                            selectPais.innerHTML = '<option value="">Seleccione...</option>';
+                            data.forEach(pais => {
+                                let option = document.createElement("option");
+                                option.value = pais.idPais;
+                                option.textContent = pais.descripcion;
+                                selectPais.appendChild(option);
+                            });
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            document.getElementById("fkPais").innerHTML = '<option value="">Error al cargar</option>';
+                        });
+            }
+
+            function cargarEntidad() {
+                let paisSeleccionado = document.getElementById("fkPais").value;
+                let selectEntidad = document.getElementById("fkEntidad");
+
+                if (!paisSeleccionado) {
+                    selectEntidad.innerHTML = '<option value="">Seleccione un país primero</option>';
+                    selectEntidad.disabled = true;
+                    return;
+                }
+
+                fetch(`http://localhost:8080/entidad/getByPais/${paisSeleccionado}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Error al obtener las entidades");
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            selectEntidad.innerHTML = '<option value="">Seleccione...</option>';
+                            data.forEach(entidad => {
+                                let option = document.createElement("option");
+                                option.value = entidad.catalogKey;
+                                option.textContent = entidad.entidadFederativa;
+                                selectEntidad.appendChild(option);
+                            });
+                            selectEntidad.disabled = false;
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            selectEntidad.innerHTML = '<option value="">Error al cargar</option>';
+                            selectEntidad.disabled = true;
+                        });
+            }
+
+            document.getElementById("personaForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let camposRequeridos = ["nombresPersona", "primerApellidoPersona", "curpPersona", "fkSexo", "fkPais"];
+                let formularioValido = true;
+
+                camposRequeridos.forEach(id => {
+                    let campo = document.getElementById(id);
+                    if (!campo.value) {
+                        campo.style.border = "2px solid red";
+                        formularioValido = false;
+                    } else {
+                        campo.style.border = "";
+                    }
+                });
+
+                if (!formularioValido) {
+                    alert("Por favor, complete todos los campos obligatorios.");
+                    return;
+                }
+
+                let persona = {
+                    activoPersona: 1,
+                    nombresPersona: document.getElementById("nombresPersona").value,
+                    primerApellidoPersona: document.getElementById("primerApellidoPersona").value,
+                    segundoApellidoPersona: document.getElementById("segundoApellidoPersona").value,
+                    fechaNacimientoPersona: document.getElementById("fechaNacimiento").value,
+                    curpPersona: document.getElementById("curpPersona").value,
+                    fkSexoCurp: {
+                        catalogKey: document.getElementById("fkSexo").value
+                    },
+                    fkPaisNac: {
+                        idPais: parseInt(document.getElementById("fkPais").value)
+                    },
+                    fkEntidadNac:{
+                        catalogKey: document.getElementById("fkEntidad").value
+                    } 
+                };
+
+                let botonGuardar = document.querySelector("button[type='submit']");
+                botonGuardar.disabled = true;
+
+                fetch("http://localhost:8080/persona/create", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(persona)
+                })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Error al guardar persona");
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            alert("Persona guardada con éxito");
+                            document.getElementById("personaForm").reset();
+                            cargarPersonas();
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Error al guardar persona verifique los datos");
+                        }).finally(() => {
+                    botonGuardar.disabled = false;
+                });
+            });
+        </script>
+    </body>
+</html>

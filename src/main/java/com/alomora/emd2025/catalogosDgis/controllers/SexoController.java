@@ -36,7 +36,7 @@ public class SexoController {
     }
     
     @GetMapping("/getByKey/{key}")
-    public ResponseEntity<List<SexoCTL>> getByKey(@PathVariable("key") String key){
+    public ResponseEntity<List<SexoCTL>> getByKey(@PathVariable("key") Integer key){
         List<SexoCTL> sexoAux= sexoService.getByKey(key);
         if(sexoAux.isEmpty()){            
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(sexoAux);

@@ -20,7 +20,7 @@ public interface SexoRepository extends JpaRepository<SexoCTL, Long>{
      List<SexoCTL> getAllByEstatus(@Param("estatus") Integer estatus);
      
      @Query(value = "SELECT e FROM SexoCTL e WHERE e.catalogKey=:catalogKey")
-     List<SexoCTL> getByKey(@Param("catalogKey") String catalogKey);
+     List<SexoCTL> getByKey(@Param("catalogKey") Integer catalogKey);
     
     
 }
