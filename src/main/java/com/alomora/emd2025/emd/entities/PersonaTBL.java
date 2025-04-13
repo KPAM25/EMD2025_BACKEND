@@ -42,24 +42,16 @@ public class PersonaTBL {
     @Basic(optional = false)
     @Column(name = "id_persona")
     private Long idPersona;
-    @NotNull(message = "El campo 'activoPersona' es obligatorio")
     @Column(name = "activo_persona")
     private Integer activoPersona;
-    @NotBlank(message = "El nombre no puede estar vacío")
-    @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres")
     @Column(name = "nombres_persona")
     private String nombresPersona;
-    @NotBlank(message = "El primer apellido es obligatorio")
     @Column(name = "primer_apellido_persona")
     private String primerApellidoPersona;
     @Column(name = "segundo_apellido_persona")
     private String segundoApellidoPersona;
-    @NotNull(message = "La fecha de nacimiento es obligatoria")
     @Column(name = "fecha_nacimiento_persona")
     private String fechaNacimientoPersona;
-    @NotBlank(message = "La CURP es obligatoria")
-    @Size(min = 18, max = 18, message = "La CURP debe tener exactamente 18 caracteres")
-    @Pattern(regexp = "^[A-Z]{4}[0-9]{6}[HM]{1}[A-Z]{2}[A-Z0-9]{3}[0-9A-Z]{1}$", message = "Formato de CURP inválido")
     @Column(name = "curp_persona", unique = true)
     private String curpPersona;
     @JoinColumn(name = "fk_pais_nac", referencedColumnName = "id_pais")

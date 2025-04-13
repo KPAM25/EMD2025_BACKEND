@@ -31,6 +31,11 @@ public class EntidadServive {
     }
     
     public List<EntidadCTL> getByPais(Long fkPais){
-        return (List<EntidadCTL>)this.entidadRepository.getByPais(fkPais);
+        List<EntidadCTL> entidades = (List<EntidadCTL>)this.entidadRepository.getByPais(fkPais);
+        if (entidades.isEmpty()) {
+            // Si no hay resultados, regresamos la entidad NO APLICA
+            return (List<EntidadCTL>)this.entidadRepository.getByKey("88");
+        }
+        return entidades;
     }
 }

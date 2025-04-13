@@ -49,10 +49,6 @@ public class EntidadController {
     @GetMapping("/getByPais/{fkPais}")
     public ResponseEntity<List<EntidadCTL>> getByPais(@PathVariable("fkPais") Long fkPais){
         List<EntidadCTL> entidadAux= entidadServive.getByPais(fkPais);
-        if(entidadAux.isEmpty()){            
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(entidadAux);
-        }else{
-            return ResponseEntity.status(HttpStatus.OK).body(entidadAux);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(entidadAux);
     }
 }
